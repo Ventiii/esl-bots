@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <!-- (! Warning !) Password Protection -->
+        <ui-view data-name="password_protection">
+            <strong><span data-lang="WARNING:">WARNING:</span></strong>
+            <span data-lang="The Editor is not protected by any password. Other players can change all of the settings!">The Editor is not protected by any password! Other players are able to change any of the settings!</span>
+        </ui-view>
+
+        <!-- Toolbar -->
+        <ui-view data-name="toolbar" data-type="toolbar">
+            <ui-logo>
+                ESL Bot Editor<sub>esl-bots</sub>
+            </ui-logo>
+            <ui-menu>
+                <ul class="main">
+                    <li>
+                        <a>
+                            <span data-lang="Basic">
+                                Basic Settings
+                            </span>
+                        </a>
+                        <ul>
+                            <li data-action="spawn_esl_bots">
+                                <a data-key="F1">
+                                    <input type="number" name="bots" value="1" />
+                                    <span data-lang="Spawn">
+                                        Spawn
+                                    </span>
+                                </a>
+                            </li>
+                            <li data-action="kill_esl_bots">
+                                <a data-key="F2">
+                                    <span data-lang="Kill">
+                                        Kill
+                                    </span>
+                                </a>
+                            </li>
+                            <li data-action="toggle_respawn_esl_bots">
+                                <a >
+                                    <span data-lang="Respawn">
+                                        Toggle Respawn
+                                    </span>
+                                </a>
+                            </li>
+                            <li data-action="toggle_aggression_esl_bots">
+                                <a >
+                                    <span data-lang="Aggression">
+                                        Toggle Aggression
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li data-action="request_settings">
+                        <a data-key="F11">
+                            <span data-lang="Settings">
+                                Settings
+                            </span>
+                        </a>
+                    </li>
+                    <li data-action="exit_editor">
+                        <a data-key="F12">
+                            <span data-lang="Exit Editor">
+                                Exit Editor
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </ui-menu>
+        </ui-view>
+
+
+        <!-- Handle Authentication -->
+
+        <ui-view data-name="password" data-type="dialog">
+            <ui-header>
+                <span data-lang="Access Password">
+                    Access Password
+                </span>
+            </ui-header>
+            <ui-content data-type="form" data-action="UI_SendPassword">
+                <p>
+                    <span data-lang="Please enter your password to access the editor">
+                        Please enter your password to access the editor
+                    </span>
+                </p>
+                <ui-error></ui-error>
+                <input type="password" name="password" value="" />
+            </ui-content>
+            <ui-buttons>
+                <button data-action="close">
+                    <span data-lang="Close">
+                        Quit
+                    </span>
+                </button>
+                <button data-action="authenticate">
+                    <span data-lang="Authenticate">
+                        Authenticate
+                    </span>
+                </button>
+            </ui-buttons>
+        </ui-view>
+
+        <!-- Settings -->
+        <ui-view data-name="settings" data-type="dialog">
+            <ui-header>
+                <span data-lang="Settings">
+                    Settings
+                </span>
+            </ui-header>
+            <ui-content data-type="form" data-action="UI_SaveSettings">
+                <ui-tabs>
+                    <input checked="checked" id="GLOBAL" type="radio" name="tabs" />
+                    <input id="BASIC" type="radio" name="tabs" />
+                    <input id="ADVANCED" type="radio" name="tabs" />
+                    <input id="SPAWN" type="radio" name="tabs" />
+                    <input id="WEAPONS" type="radio" name="tabs" />
+
+
+                    <nav>
+                        <ul class="main">
+                            <li>
+                                <label for="GLOBAL">
+                                    <span data-lang="General">
+                                        General
+                                    </span>
+                                </label>
+                            </li>
+                            <li>
+                                <label for="BASIC">
+                                    <span data-lang="Basic">
+                                        Basic
+                                    </span>
+                                </label>
+                            </li>
+                            <li>
+                                <label for="ADVANCED">
+                                    <span data-lang="Advanced">
+                                        Advanced
+                                    </span>
+                                </label>
+                            </li>
+                            <li>
+                                <label for="SPAWN">
+                                    <span data-lang="Spawn">
+                                        Spawn
+                                    </span>
+                                </label>
+                            </li>
+                            <li>
+                                <label for="WEAPONS">
+                                    <span data-lang="Weapons">
+                                        Weapons
+                                    </span>
+                                </label>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <figure>
+                        <ui-tab class="GLOBAL"></ui-tab>
+                        <ui-tab class="BASIC"></ui-tab>
+                        <ui-tab class="ADVANCED"></ui-tab>
+                        <ui-tab class="SPAWN"></ui-tab>
+                        <ui-tab class="WEAPONS"></ui-tab>
+                    </figure>
+                </ui-tabs>
+
+                <ui-description></ui-description>
+            </ui-content>
+
+            <ui-buttons>
+                <button data-action="close">
+                    <span data-lang="Back">
+                        Back
+                    </span>
+                </button>
+                <button data-action="restore">
+                    <span data-lang="Restore default Settings">
+                        Restore Default Settings
+                    </span>
+                </button>
+                <ui-spacer></ui-spacer>
+                <button data-action="submit">
+                    <span data-lang="Save Changes">
+                        Save Changes
+                    </span>
+                </button>
+            </ui-buttons>
+        </ui-view>
+
+
+        <script src="classes/Tools.js"></script>
+        <script src="classes/Config.js"></script>
+        <script src="classes/Element.js"></script>
+        <script src="classes/ESLSettingsEditor.js"></script>
+    </body>
+</html>

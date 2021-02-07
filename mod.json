@@ -1,0 +1,10 @@
+{
+    "Name": "esl-bots",
+    "Description": "Venice Unleashed ESL Battlefield 3 Bots",
+    "Version": "1.0.0",
+    "HasVeniceEXT": true,
+    "Authors": ["-Ventiii-VIPs-"],
+    "Dependencies": {
+        "veniceext": "^1.0.0"
+    }
+}
